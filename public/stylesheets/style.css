@@ -1,0 +1,134 @@
+nav {
+	padding-top: 10px;
+}
+
+.navbar {
+background-color: #81588C !important;
+margin: auto !important;
+}
+
+.container {
+	width: 1000px;
+	margin-top: 80px !important;
+	padding-bottom: 10px !important;
+}
+
+.nav-col {
+	width: 127px;
+	height: 40px;
+	float: left;
+	margin-left: 15px;
+	color: white;
+	font-size: 18px;
+}
+
+.search-col {
+	float: right;
+	margin-right: 10px;
+	width: 300px;
+	height: 40px;
+}
+
+.search-bar {
+	width: 200px;
+	margin-right: 2px;
+}
+
+.logo {
+	font-size: 20px;
+}
+
+.search-btn {
+	color: #9000F2;
+	background-color: #F2ACCD;
+	position: relative;
+	top: -2px;
+}
+
+.search-btn:hover {
+	background-color: orange;
+	color: white !important;
+}
+
+.add-recipe {
+	margin-left: 50px !important;
+}
+
+ul a {
+	font-size: 18px;
+}
+
+nav a {
+	color: white;
+	text-decoration: none;
+}
+
+nav a:hover {
+	color: #F2ACCD;
+	text-decoration: none;
+}
+
+.ingredients-list {
+	font-size: 16px;
+}
+
+.login-container {
+	margin: 200px auto;
+	width: 600px;
+}
+
+.info-container {
+	margin: 50px auto;
+	width: 600px;
+	padding: 10px;
+}
+
+.info-container h3 {
+	text-align: center;
+}
+
+.info-container input {
+	width: 200px;
+}
+
+.signup-form {
+	margin: 10px 0 10px 55px;
+}
+
+.signup-btn {
+	margin-left: 195px;
+}
+
+.login-container form {
+	padding-left: 150px;
+	padding-top: 15px;
+}
+
+.login-container h3 {
+	text-align: center;
+}
+
+.buttons {
+	width: 300px;
+	margin-left: 45px;
+}
+
+.enter-info {
+	margin-right: 30px;
+}
+
+.nextIngredient {
+	margin-top: 10px;
+}
+
+.enterIngredient {
+	width: 300px !important;
+	margin-bottom: 10px;
+}
+
+.welcome {
+	width: 250px;
+	text-align: right;
+	margin-right: 20px;
+	float: right;
+}

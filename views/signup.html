@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="info-container">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Enter Your Information</h3>
+		</div>
+		<form class="signup-form form-horizontal" action="/signup/submit" method="POST" role="form">
+
+				<div class="form-group">
+					<label class="control-label col-sm-4" for="first_name" >FIRST NAME*</label>
+					<input name="first_name" type="text" class="form-control" required = "true">
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-4" for="last_name" >LAST NAME*</label>
+					<input name="last_name" type="text" class="form-control" required = "true">
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-4" for="email" >EMAIL*</label>
+					<input name="email" type="email" class="form-control" required = "true">
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-4" for="username" >USER NAME*</label>
+					<input name="username" type="text" class="form-control" required = "true">
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-4" for="password" >PASSWORD*</label>
+					<input name="password" type="password" class="form-control" required = "true">
+				</div>
+			<button type="submit" class="signup-btn btn btn-success">Submit</button>
+		</form>
+	</div>
+</div>
+{% endblock %}

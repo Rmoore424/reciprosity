@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<h1>{{recipe.title}}</h1>
+
+	<h3>Ingredients</h3>
+
+	<ul>
+		{% for ingredient in recipe.ingredients %}
+		<li class="ingredients-list">{{ingredient}}</li>
+		{% endfor %}
+	</ul>
+
+	<h3>Cooking Instructions</h3>
+	<p>{{recipe|markInstructions}}</p>
+
+	<a href="/recipes/{{recipe.title}}/edit"><button type="button" class="btn btn-info">Edit Recipe</button></a>
+
+	<a href="/recipes/{{recipe.title}}/remove"><button type="button" class="btn btn-danger removeRecipe">Remove Recipe</button></a>
+{% endblock %}

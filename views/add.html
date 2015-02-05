@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<form class ="addRecipe" action="/add/submit" method="POST">
+		<div class="form-group">
+			<label for="title">RECIPE NAME</label>
+			<input name="title" type="text" class="form-control" id="addRecipeTitle">
+		</div>
+		<div class="form-group">
+			<label for="ingredients">INGREDIENTS</label>
+			<input name="ingredients" class="form-control enterIngredient" placeholder="# ingredient name">
+			<button type="button" class="btn btn-sm btn-danger nextIngredient">Add Ingredient</button>
+			<!--<textarea name="ingredients" class="form-control" rows="10"></textarea> -->
+		</div>
+		<div class="form-group">
+			<label for="instructions">INSTRUCTIONS</label>
+			<textarea name="instructions" class="form-control" id="cookingInstructions" rows="20"></textarea>
+		</div>
+		<button type="submit" class="btn btn-danger addPage">Submit</button>
+	</form>
+{% endblock %}

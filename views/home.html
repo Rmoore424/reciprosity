@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>All Shared Recipes</h1>
+	<ul>
+		{% for recipe in recipes %}
+		<li><a href="/recipes/{{recipe.title}}">{{recipe.title}}</a></li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

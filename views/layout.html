@@ -7,7 +7,6 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-
   	<nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="logo nav-col"> <!-- Reciprosity -->
           <a href="/home">Reciprosity</a>
@@ -19,7 +18,7 @@
           <a href="#">My Friends</a>
         </div>
         <div class="nav-col">
-          <a href="#">My Recipes</a>
+          <a href="/my_recipes">My Recipes</a>
         </div>
        <!-- <div class="search-col">
           <input class="search-bar" name="search" type="text" value="Search For A Recipe"/>
@@ -27,7 +26,10 @@
             <span class="glyphicon glyphicon-search"></span> Search
           </button>
         </div>-->
-        {% if name %}
+
+          <div class="nav-col logout">
+            <a href="/logout">Logout</a>
+          </div>        {% if name %}
           <div class="nav-col welcome">
             <p>Welcome, {{name}}</p>
           </div>

@@ -21,44 +21,76 @@ passport.use(new LocalStrategy(
 ));
 
 router.get("/", function(req, res, next) {
-	res.render("index");
+	res.render("index"); // check to see if the user is authenticated
 });
 
-router.get("/home/:user", function(req, res, next) {
-	var name = req.params.user;
-	User.findOne({username: name}, function(err, user) {
-		console.log(typeof user._id);
-		console.log(user._id);
-		res.end();
-	})
-	// Recipe.find(function(err, recipes) {
-	// 	res.render("home", {recipes: recipes, name: name});
-	// });
+router.get("/home/", function(req, res, next) {
+	//var name = req.params.user;
+	if (typeof req.session.passport.user == "undefined") {
+		res.redirect("/");
+	}
+
+	else {
+		Recipe.find(function(err, recipes) {
+			res.render("home", {recipes: recipes});
+		});
+	}
 });
 
 router.get("/add", function(req, res, next) {
+		if (typeof req.session.passport.user == "undefined") {
+		res.redirect("/");
+	}
+
+	else {
 	res.render("add");
+	}
 });
 
 router.get("/recipes/:title", function(req, res, next) {
-	title = req.params.title;
-	Recipe.findOne({title: title}, function(err, recipe) {
-		res.render("recipe_page", {recipe: recipe});
-	});
+	var title = req.params.title;
+	if (typeof req.session.passport.user == "undefined") {
+		res.redirect("/");
+	}
+	else {
+		Recipe.findOne({title: title}, function(err, recipe) {
+			res.render("recipe_page", {recipe: recipe});
+		});
+	}
 });
 
+router.get("/my_recipes", function(req, res, next) {
+	var userId = req.session.passport.user;
+	User.findById(userId, function(err, user) {
+		var recipes = user.user_recipes;
+		res.render("my_recipes_page", {recipes: recipes})
+	})
+})
+
 router.post("/add/submit", function(req, res, next) {
+	var userId = req.session.passport.user;
 	Recipe.create(req.body, function(err, recipe) {
 		if (err) return next(err);
-		res.redirect("/home");
+		User.findById(userId, function(err, user) {
+			if (err) return next(err);
+			user.user_recipes.push(recipe);
+			user.save(function(){
+				res.redirect("/home");
+			})
+		});
 	});
 });
 
 router.get("/recipes/:title/edit", function(req, res, next) {
-	Recipe.findOne({title: req.params.title}, function(err, recipe) {
-		if (err) return next(err);
-			res.render("edit", {recipe: recipe});
-	});
+	if (typeof req.session.passport.user == "undefined") {
+		res.redirect("/");
+	}
+	else {
+		Recipe.findOne({title: req.params.title}, function(err, recipe) {
+			if (err) return next(err);
+				res.render("edit", {recipe: recipe});
+		});
+	}
 });
 
 router.post("/recipes/:title/edit", function(req, res, next) {
@@ -69,9 +101,14 @@ router.post("/recipes/:title/edit", function(req, res, next) {
 });
 
 router.get("/recipes/:title/remove", function(req, res, next) {
-	Recipe.findOneAndRemove({title: req.params.title}, function(err, recipe) {
-	res.redirect("/home");
-	});
+	if (typeof req.session.passport.user == "undefined") {
+		res.redirect("/");
+	}
+	else {
+		Recipe.findOneAndRemove({title: req.params.title}, function(err, recipe) {
+			res.redirect("/home");
+		});
+	}
 });
 
 router.get("/signup", function(req, res, next) {
@@ -79,7 +116,6 @@ router.get("/signup", function(req, res, next) {
 });
 
 router.post("/signup/submit", function(req, res, next) {
-	console.log(req.body);
 	User.create(req.body, function(err, user) {
 		if (err) return next(err);
 		res.redirect("/");
@@ -87,12 +123,21 @@ router.post("/signup/submit", function(req, res, next) {
 });
 
 router.post("/login", 
-	passport.authenticate('local'),
-	function(req, res) {
-		res.redirect("/home/"+req.user.username);
-	}
+	passport.authenticate('local', {
+		successRedirect: "/home",
+		failureRedirect: "/"}))
+//,
+// 	function(req, res) {
+// 		res.redirect("/home");
+// 	}
+// );
 
-);
+router.get("/logout", function(req, res, next) {
+	req.session.destroy(function(err) {
+		req.logout();
+		res.redirect("/");
+	});
+});
 
 
 module.exports = router;

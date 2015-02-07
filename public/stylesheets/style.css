@@ -132,3 +132,9 @@ nav a:hover {
 	margin-right: 20px;
 	float: right;
 }
+
+.logout {
+	width: 75px;
+	float: right;
+	margin-right: 20px;
+}

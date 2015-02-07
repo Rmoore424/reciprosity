@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>My Recipes</h1>
+	<ul>
+		{% for recipe in recipes %}
+		<li><a href="/recipes/{{recipe.title}}">{{recipe.title}}</a></li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}
